@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hardware on 182-bit-tech-docs</title>
+    <link>http://localhost:1313/tags/hardware/</link>
+    <description>Recent content in Hardware on 182-bit-tech-docs</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 30 Sep 2024 22:38:02 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/hardware/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Stepper Motors</title>
+      <link>http://localhost:1313/posts/2024-09-30-stepper-motors/</link>
+      <pubDate>Mon, 30 Sep 2024 22:38:02 +0200</pubDate>
+      <guid>http://localhost:1313/posts/2024-09-30-stepper-motors/</guid>
+      <description>&lt;h1 id=&#34;stepper-motors-in-projects-a-journey-of-learning-and-discovery&#34;&gt;Stepper Motors in Projects: A Journey of Learning and Discovery&lt;/h1&gt;&#xA;&lt;p&gt;Embarking on electronics projects during my university studies has been an exhilarating experience, blending theoretical knowledge with hands-on application. One of the most intriguing components I&amp;rsquo;ve worked with is the &lt;strong&gt;stepper motor&lt;/strong&gt;, particularly the &lt;strong&gt;28BYJ-48 5V&lt;/strong&gt; model. This journey not only deepened my understanding of motor control systems but also introduced me to essential tools and configurations, such as using an Arduino, calculating steps per revolution, managing system permissions on Arch Linux, and utilizing Fritzing for schematic design. While the project proved invaluable, it also highlighted the necessity for more powerful motors to meet my growing ambitions.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

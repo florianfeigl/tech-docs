@@ -1,0 +1,35 @@
+theme = "hugotex"
+
+baseURL = "https://182bit.org"
+title = "182-bit-tech-docs"
+languageCode = "en"
+DefaultContentLanguage = "en"
+enableInlineShortcodes = true
+footnoteReturnLinkContents = "^"
+
+[pagination]
+  pagerSize = 3
+
+[Params.Author]
+  name = "Florian Feigl"
+  abstract = """
+  I'm a biologist, tech enthusiast and writer in Europe, mostly Austria and Germany. 
+  My main interest lies in interdisciplinary work with the aim to share useful traits and tools with one another.
+  """
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "paraiso-dark"
+
+[Params]
+  # darkmode = true
+  lightmode = true
+  twittercard = true
