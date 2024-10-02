@@ -1,7 +1,7 @@
 theme = "hugotex"
 
 baseURL = "https://182bit.org"
-title = "182-bit-tech-docs"
+title = "182 bit tech docs"
 languageCode = "en"
 DefaultContentLanguage = "en"
 enableInlineShortcodes = true
