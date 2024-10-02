@@ -1,7 +1,6 @@
 +++
 title = 'Flashing OpenWrt on your hardware'
 date = 2024-09-30T20:16:51+02:00
-draft = true 
 tags = ["network", "software", "wifi", "ssh", "tftp"]
 +++
 # Flashing OpenWrt on a Ubiquiti AP AC Pro: A Journey from TFTP Frustration to SSH Success

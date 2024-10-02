@@ -1,7 +1,6 @@
 +++
 title = 'Running Stepper Motors'
 date = 2024-09-30T22:38:02+02:00
-draft = true
 tags = ["hardware", "stepper motor", "arduino", "elegoo", "microcontroller", "driver"]
 +++
 # Stepper Motors in Projects: A Journey of Learning and Discovery
