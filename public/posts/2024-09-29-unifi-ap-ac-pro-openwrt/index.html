@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8" />
+
+  <title>Flashing OpenWrt - 182-bit-tech-docs</title>
+
+
+  <meta name="author" content="Florian Feigl"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Flashing OpenWrt">
+  <meta name="twitter:description" content="Flashing OpenWrt on a Ubiquiti AP AC Pro: A Journey from TFTP Frustration to SSH Success Image credit: https://techspecs.ui.com/unifi/wifi/uap-ac-pro#marketing-images
+Introduction As a network enthusiast, I’ve always been keen on customizing my devices to unlock their full potential. Recently, I decided to flash OpenWrt onto my Ubiquiti AP AC Pro to gain more control over its features. What seemed like a straightforward task turned into a learning experience that underscored the importance of digging deeper when faced with technical challenges.">
+
+
+<link rel="stylesheet" href="http://localhost:1313/css/latex.css" />
+<link rel="stylesheet" href="http://localhost:1313/css/main.css" />
+<script id="MathJax-script" async src="http://localhost:1313/js/tex-mml-chtml.js"></script>
+<meta name="generator" content="Hugo 0.134.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<body>
+
+
+
+
+
+
+<header>
+  <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+    </ul>
+  </div>
+</nav>
+  <div class="intro-header">
+    <div class="container">
+      <div class="posts-heading">
+        
+          <h1>Flashing OpenWrt</h1>
+          
+        
+      </div>
+    </div>
+  </div>
+</header>
+<div id="content">
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      <div class="postmeta">
+        <span class="meta-post">
+  <i class="fa fa-calendar-alt"></i>
+  Sep 30, 2024
+  
+</span>
+      </div>
+      <br>
+      
+    <h1 id="flashing-openwrt-on-a-ubiquiti-ap-ac-pro-a-journey-from-tftp-frustration-to-ssh-success">Flashing OpenWrt on a Ubiquiti AP AC Pro: A Journey from TFTP Frustration to SSH Success</h1>
+<p><img src="/images/posts/uap-ac-pro-8.png" alt="Ubiquiti AP AC Pro"></p>
+<p><em>Image credit: <a href="https://techspecs.ui.com/unifi/wifi/uap-ac-pro#marketing-images">https://techspecs.ui.com/unifi/wifi/uap-ac-pro#marketing-images</a></em></p>
+<h2 id="introduction">Introduction</h2>
+<p>As a network enthusiast, I&rsquo;ve always been keen on customizing my devices to unlock their full potential. Recently, I decided to flash OpenWrt onto my <strong>Ubiquiti AP AC Pro</strong> to gain more control over its features. What seemed like a straightforward task turned into a learning experience that underscored the importance of digging deeper when faced with technical challenges.</p>
+<p><em>Specifications: <a href="https://techspecs.ui.com/unifi/wifi/uap-ac-pro#marketing-images">https://techspecs.ui.com/unifi/wifi/uap-ac-pro#marketing-images</a></em></p>
+<h2 id="the-initial-plan-flashing-via-tftp">The Initial Plan: Flashing via TFTP</h2>
+<p>Flashing firmware via TFTP (Trivial File Transfer Protocol) is a common method recommended for devices like the Ubiquiti AP AC Pro. Confidently, I gathered all the necessary tools:</p>
+<ul>
+<li><strong>OpenWrt firmware</strong> compatible with my device</li>
+<li>A <strong>TFTP server</strong> set up on my Linux machine</li>
+<li>An Ethernet cable to connect my computer directly to the access point</li>
+</ul>
+<p>Following the standard procedure, I:</p>
+<ol>
+<li><strong>Set up my PC&rsquo;s IP address</strong> to be in the same subnet as the AP.</li>
+<li><strong>Configured the TFTP server</strong> to serve the OpenWrt firmware.</li>
+<li><strong>Put the AP into TFTP recovery mode</strong>, which involves pressing the reset button while powering on the device.</li>
+<li><strong>Monitored the TFTP transfer</strong> using <code>tcpdump</code> to ensure the firmware was being sent.</li>
+</ol>
+<h2 id="hitting-a-wall-the-tftp-failure">Hitting a Wall: The TFTP Failure</h2>
+<p>Despite meticulous preparation, the TFTP method failed to deliver the desired result. The firmware transfer appeared to occur successfully—<code>tcpdump</code> confirmed data was being sent over UDP port 69. However, after the AP rebooted, it was still running the stock Ubiquiti firmware. There were no error messages or obvious signs pointing to the cause of the failure.</p>
+<p>Attempts to access the OpenWrt interface at <code>192.168.1.1</code> proved futile. Instead, the device remained accessible at its default IP, <code>192.168.1.20</code>, and continued to exhibit Ubiquiti-specific behavior. Even SSHing into the device using <code>ubnt@192.168.1.20</code> worked, confirming that the stock firmware was intact.</p>
+<h2 id="the-turning-point-reading-deeper">The Turning Point: Reading Deeper</h2>
+<p>Frustration set in. I had followed the TFTP flashing instructions to the letter, yet the AP stubbornly refused to accept the new firmware. It was time to dig deeper.</p>
+<p>A bit of research led me to the <a href="https://openwrt.org/toh/ubiquiti/unifiac">OpenWrt wiki page for the Ubiquiti UniFi AC series</a>. Buried within the documentation, I discovered an alternative method that didn&rsquo;t rely on TFTP:</p>
+<h3 id="the-non-invasive-ssh-and-dd-method">The Non-Invasive SSH and <code>dd</code> Method</h3>
+<p>This approach leverages SSH access to the device and uses the <code>dd</code> command to write the firmware directly to the device&rsquo;s memory partitions. Here&rsquo;s a condensed version of the steps:</p>
+<ol>
+<li><strong>Obtain the correct OpenWrt firmware</strong> for the Ubiquiti AP AC Pro.</li>
+<li><strong>Connect the AP directly to the PC</strong> using an Ethernet cable. If using PoE, ensure only the PoE injector is in between.</li>
+<li><strong>Set a static IP</strong> on the PC (e.g., <code>192.168.1.10</code>) in the same subnet as the AP.</li>
+<li><strong>SSH into the AP</strong> using <code>ssh ubnt@192.168.1.20</code> (password: <code>ubnt</code>). If SSH fails, perform a hard reset.</li>
+<li><strong>Transfer the firmware to the AP</strong>:
+<ul>
+<li>If <code>scp</code> works:
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>scp -O openwrt.bin ubnt@192.168.1.20:/tmp/sysupgrade.bin
+</span></span></code></pre></div></li>
+<li>If <code>scp</code> fails:
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat openwrt.bin | ssh ubnt@192.168.1.20 <span style="color:#48b685">&#34;cat &gt; /tmp/sysupgrade.bin&#34;</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li><strong>Unlock the memory partitions</strong> (if necessary):
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#48b685">&#34;5edfacbf&#34;</span> &gt; /proc/ubnthal/.uf
+</span></span></code></pre></div></li>
+<li><strong>Identify the correct memory partitions</strong> by running <code>cat /proc/mtd</code>.</li>
+<li><strong>Write the firmware to the partitions</strong>:
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dd <span style="color:#815ba4">if</span><span style="color:#5bc4bf">=</span>/tmp/sysupgrade.bin <span style="color:#ef6155">of</span><span style="color:#5bc4bf">=</span>/dev/mtdblock2
+</span></span><span style="display:flex;"><span>dd <span style="color:#815ba4">if</span><span style="color:#5bc4bf">=</span>/tmp/sysupgrade.bin <span style="color:#ef6155">of</span><span style="color:#5bc4bf">=</span>/dev/mtdblock3
+</span></span></code></pre></div></li>
+<li><strong>Set the boot flag</strong> to boot from the new firmware:
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dd <span style="color:#815ba4">if</span><span style="color:#5bc4bf">=</span>/dev/zero <span style="color:#ef6155">bs</span><span style="color:#5bc4bf">=</span><span style="color:#f99b15">1</span> <span style="color:#ef6155">count</span><span style="color:#5bc4bf">=</span><span style="color:#f99b15">1</span> <span style="color:#ef6155">of</span><span style="color:#5bc4bf">=</span>/dev/mtdblock4
+</span></span></code></pre></div></li>
+<li><strong>Reboot the device</strong>:
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>reboot
+</span></span></code></pre></div></li>
+<li><strong>Access OpenWrt</strong> at <code>http://192.168.1.1</code>.</li>
+</ol>
+<h2 id="success-at-last">Success at Last</h2>
+<p>Following these steps, I was able to successfully flash OpenWrt onto my Ubiquiti AP AC Pro. The device rebooted, and I was greeted with the OpenWrt web interface—a welcome sight after hours of troubleshooting.</p>
+<h2 id="lessons-learned">Lessons Learned</h2>
+<p>This experience reinforced several important lessons:</p>
+<ul>
+<li><strong>Persistence Pays Off</strong>: When the standard methods fail, it&rsquo;s crucial not to give up. There&rsquo;s often more than one way to achieve a goal.</li>
+<li><strong>Read the Documentation Thoroughly</strong>: The answer was available in the documentation, but it required careful reading and attention to detail.</li>
+<li><strong>Understand Your Device</strong>: Knowing that I could SSH into the AP opened up alternative avenues for flashing the firmware.</li>
+<li><strong>Community Resources Are Invaluable</strong>: Forums, wikis, and user guides provided by the community can offer solutions not found in official manuals.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Flashing custom firmware can be a challenging but rewarding endeavor. While the TFTP method is commonly recommended, it&rsquo;s not always the silver bullet. By exploring alternative methods and deepening your understanding of the device, you can overcome obstacles and achieve your objectives.</p>
+<p>If you&rsquo;re attempting to flash OpenWrt onto a Ubiquiti AP AC Pro and encounter issues with TFTP, consider using the SSH and <code>dd</code> method. Just remember to proceed with caution—writing directly to memory partitions carries risks, and it&rsquo;s essential to follow the steps carefully.</p>
+<hr>
+<p><strong>Disclaimer</strong>: Modifying your device&rsquo;s firmware can void warranties and, if done incorrectly, may render the device unusable. Proceed at your own risk.</p>
+
+
+
+      
+        <div class="blog-tags">
+          
+          <a href="http://localhost:1313/tags/network/">network</a>&nbsp;
+          
+          <a href="http://localhost:1313/tags/software/">software</a>&nbsp;
+          
+          <a href="http://localhost:1313/tags/wifi/">wifi</a>&nbsp;
+          
+          <a href="http://localhost:1313/tags/ssh/">ssh</a>&nbsp;
+          
+          <a href="http://localhost:1313/tags/tftp/">tftp</a>&nbsp;
+          
+        </div>
+      
+    </article>
+    
+  </div>
+
+        </div><footer>
+  <div class="container">
+    <p class="credits copyright">
+      <p class="credits theme-by">
+        
+        
+        
+        <a href="http://localhost:1313/">182-bit-tech-docs</a>,
+        
+        &copy;
+        2024
+        <a href="http://localhost:1313/about/">Florian Feigl</a>
+      </p>
+  </div>
+</footer></body>
+</html>
