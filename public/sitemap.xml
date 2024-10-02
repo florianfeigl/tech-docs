@@ -2,56 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://182bit.org/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/arduino/</loc>
+    <loc>https://182bit.org/posts/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/driver/</loc>
-    <lastmod>2024-09-30T22:38:02+02:00</lastmod>
+    <loc>https://182bit.org/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/elegoo/</loc>
-    <lastmod>2024-09-30T22:38:02+02:00</lastmod>
+    <loc>https://182bit.org/series/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/hardware/</loc>
-    <lastmod>2024-09-30T22:38:02+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/microcontroller/</loc>
-    <lastmod>2024-09-30T22:38:02+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2024-09-30T22:38:02+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/stepper-motor/</loc>
-    <lastmod>2024-09-30T22:38:02+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/2024-09-30-stepper-motors/</loc>
-    <lastmod>2024-09-30T22:38:02+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2024-09-30T22:38:02+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/2024-09-29-unifi-ap-ac-pro-openwrt/</loc>
-    <lastmod>2024-09-30T20:16:51+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/network/</loc>
-    <lastmod>2024-09-30T20:16:51+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/software/</loc>
-    <lastmod>2024-09-30T20:16:51+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/ssh/</loc>
-    <lastmod>2024-09-30T20:16:51+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/tftp/</loc>
-    <lastmod>2024-09-30T20:16:51+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/wifi/</loc>
-    <lastmod>2024-09-30T20:16:51+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/</loc>
-  </url><url>
-    <loc>http://localhost:1313/series/</loc>
+    <loc>https://182bit.org/tags/</loc>
   </url>
 </urlset>
