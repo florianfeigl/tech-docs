@@ -1,3 +1,8 @@
++++
+title = 'Decap CMS on Hugo'
+date = 2024-10-18T14:18:02+02:00
+tags = ["software", "cms", "decap", "hugo", "gitlab", "pages"]
++++
 # **How to Set Up a Multilingual Decap CMS with GitLab**
 
 Managing multilingual content can be a complex task, but with Decap CMS and GitLab, you can streamline the process effectively. This guide will walk you through setting up a multilingual content management system using Decap CMS with GitLab, handling slug fields, adding featured images, and linking translations.

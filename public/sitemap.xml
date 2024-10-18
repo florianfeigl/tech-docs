@@ -2,56 +2,56 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://182bit.org/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>https://182bit.org/tags/arduino/</loc>
+    <loc>http://localhost:1313/tags/arduino/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>https://182bit.org/tags/driver/</loc>
+    <loc>http://localhost:1313/tags/driver/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>https://182bit.org/tags/elegoo/</loc>
+    <loc>http://localhost:1313/tags/elegoo/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>https://182bit.org/tags/hardware/</loc>
+    <loc>http://localhost:1313/tags/hardware/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>https://182bit.org/tags/microcontroller/</loc>
+    <loc>http://localhost:1313/tags/microcontroller/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>https://182bit.org/posts/</loc>
+    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>https://182bit.org/posts/2024-09-30-stepper-motors/</loc>
+    <loc>http://localhost:1313/posts/2024-09-30-stepper-motors/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>https://182bit.org/tags/stepper-motor/</loc>
+    <loc>http://localhost:1313/tags/stepper-motor/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>https://182bit.org/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>https://182bit.org/posts/2024-09-29-unifi-ap-ac-pro-openwrt/</loc>
+    <loc>http://localhost:1313/posts/2024-09-29-unifi-ap-ac-pro-openwrt/</loc>
     <lastmod>2024-09-30T20:16:51+02:00</lastmod>
   </url><url>
-    <loc>https://182bit.org/tags/network/</loc>
+    <loc>http://localhost:1313/tags/network/</loc>
     <lastmod>2024-09-30T20:16:51+02:00</lastmod>
   </url><url>
-    <loc>https://182bit.org/tags/software/</loc>
+    <loc>http://localhost:1313/tags/software/</loc>
     <lastmod>2024-09-30T20:16:51+02:00</lastmod>
   </url><url>
-    <loc>https://182bit.org/tags/ssh/</loc>
+    <loc>http://localhost:1313/tags/ssh/</loc>
     <lastmod>2024-09-30T20:16:51+02:00</lastmod>
   </url><url>
-    <loc>https://182bit.org/tags/tftp/</loc>
+    <loc>http://localhost:1313/tags/tftp/</loc>
     <lastmod>2024-09-30T20:16:51+02:00</lastmod>
   </url><url>
-    <loc>https://182bit.org/tags/wifi/</loc>
+    <loc>http://localhost:1313/tags/wifi/</loc>
     <lastmod>2024-09-30T20:16:51+02:00</lastmod>
   </url><url>
-    <loc>https://182bit.org/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
   </url><url>
-    <loc>https://182bit.org/series/</loc>
+    <loc>http://localhost:1313/series/</loc>
   </url>
 </urlset>
