@@ -2,56 +2,86 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://182bit.org/</loc>
+    <lastmod>2024-10-20T23:01:29+02:00</lastmod>
+  </url><url>
+    <loc>https://182bit.org/posts/2024-10-20_automating-scripting/</loc>
+    <lastmod>2024-10-20T23:01:29+02:00</lastmod>
+  </url><url>
+    <loc>https://182bit.org/tags/automation/</loc>
+    <lastmod>2024-10-20T23:01:29+02:00</lastmod>
+  </url><url>
+    <loc>https://182bit.org/tags/bash/</loc>
+    <lastmod>2024-10-20T23:01:29+02:00</lastmod>
+  </url><url>
+    <loc>https://182bit.org/posts/</loc>
+    <lastmod>2024-10-20T23:01:29+02:00</lastmod>
+  </url><url>
+    <loc>https://182bit.org/tags/scripting/</loc>
+    <lastmod>2024-10-20T23:01:29+02:00</lastmod>
+  </url><url>
+    <loc>https://182bit.org/tags/software/</loc>
+    <lastmod>2024-10-20T23:01:29+02:00</lastmod>
+  </url><url>
+    <loc>https://182bit.org/tags/</loc>
+    <lastmod>2024-10-20T23:01:29+02:00</lastmod>
+  </url><url>
+    <loc>https://182bit.org/tags/cms/</loc>
+    <lastmod>2024-10-18T14:18:02+02:00</lastmod>
+  </url><url>
+    <loc>https://182bit.org/tags/decap/</loc>
+    <lastmod>2024-10-18T14:18:02+02:00</lastmod>
+  </url><url>
+    <loc>https://182bit.org/posts/2024-10-17_decap-on-hugo/</loc>
+    <lastmod>2024-10-18T14:18:02+02:00</lastmod>
+  </url><url>
+    <loc>https://182bit.org/tags/gitlab/</loc>
+    <lastmod>2024-10-18T14:18:02+02:00</lastmod>
+  </url><url>
+    <loc>https://182bit.org/tags/hugo/</loc>
+    <lastmod>2024-10-18T14:18:02+02:00</lastmod>
+  </url><url>
+    <loc>https://182bit.org/tags/pages/</loc>
+    <lastmod>2024-10-18T14:18:02+02:00</lastmod>
+  </url><url>
+    <loc>https://182bit.org/tags/arduino/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/arduino/</loc>
+    <loc>https://182bit.org/tags/driver/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/driver/</loc>
+    <loc>https://182bit.org/tags/elegoo/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/elegoo/</loc>
+    <loc>https://182bit.org/tags/hardware/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/hardware/</loc>
+    <loc>https://182bit.org/tags/microcontroller/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/microcontroller/</loc>
+    <loc>https://182bit.org/posts/2024-09-30-stepper-motors/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://182bit.org/tags/stepper-motor/</loc>
     <lastmod>2024-09-30T22:38:02+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/2024-09-30-stepper-motors/</loc>
-    <lastmod>2024-09-30T22:38:02+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/stepper-motor/</loc>
-    <lastmod>2024-09-30T22:38:02+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2024-09-30T22:38:02+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/2024-09-29-unifi-ap-ac-pro-openwrt/</loc>
+    <loc>https://182bit.org/posts/2024-09-29-unifi-ap-ac-pro-openwrt/</loc>
     <lastmod>2024-09-30T20:16:51+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/network/</loc>
+    <loc>https://182bit.org/tags/network/</loc>
     <lastmod>2024-09-30T20:16:51+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/software/</loc>
+    <loc>https://182bit.org/tags/ssh/</loc>
     <lastmod>2024-09-30T20:16:51+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/ssh/</loc>
+    <loc>https://182bit.org/tags/tftp/</loc>
     <lastmod>2024-09-30T20:16:51+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/tftp/</loc>
+    <loc>https://182bit.org/tags/wifi/</loc>
     <lastmod>2024-09-30T20:16:51+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/wifi/</loc>
-    <lastmod>2024-09-30T20:16:51+02:00</lastmod>
+    <loc>https://182bit.org/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
-  </url><url>
-    <loc>http://localhost:1313/series/</loc>
+    <loc>https://182bit.org/series/</loc>
   </url>
 </urlset>

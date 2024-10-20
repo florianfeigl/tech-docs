@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en"><meta charset="utf-8" />
+
+  <title>Decap CMS on Hugo - 182 BIT TECH DOCS</title>
+
+
+  <meta name="author" content="Florian Feigl"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Decap CMS on Hugo">
+  <meta name="twitter:description" content="How to Set Up a Multilingual Decap CMS with GitLab Managing multilingual content can be a complex task, but with Decap CMS and GitLab, you can streamline the process effectively. This guide will walk you through setting up a multilingual content management system using Decap CMS with GitLab, handling slug fields, adding featured images, and linking translations.
+Table of Contents Prerequisites Setting Up Decap CMS with GitLab Configuring Multilingual Collections Switching to String Widget for Slug Fields Adding Featured Images to Posts Linking Translations with Relation Fields Troubleshooting Common Issues Conclusion Prerequisites A self-hosted GitLab instance. A static site generator (e.g., Hugo, Jekyll) configured with multilingual support. Basic knowledge of YAML and Git. Decap CMS installed in your project. Setting Up Decap CMS with GitLab Step 1: Configure OAuth Application in GitLab Navigate to User Settings:">
+
+
+<link rel="stylesheet" href="https://182bit.org/css/latex.css" />
+<link rel="stylesheet" href="https://182bit.org/css/main.css" />
+<script id="MathJax-script" async src="https://182bit.org/js/tex-mml-chtml.js"></script>
+<meta name="generator" content="Hugo 0.135.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<body>
+
+
+
+
+
+
+<header>
+  <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+    </ul>
+  </div>
+</nav>
+  <div class="intro-header">
+    <div class="container">
+      <div class="posts-heading">
+        
+          <h1>Decap CMS on Hugo</h1>
+          
+        
+      </div>
+    </div>
+  </div>
+</header>
+<div id="content">
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      <div class="postmeta">
+        <span class="meta-post">
+  <i class="fa fa-calendar-alt"></i>
+  Oct 18, 2024
+  
+</span>
+      </div>
+      <br>
+      
+    <h1 id="how-to-set-up-a-multilingual-decap-cms-with-gitlab"><strong>How to Set Up a Multilingual Decap CMS with GitLab</strong></h1>
+<p>Managing multilingual content can be a complex task, but with Decap CMS and GitLab, you can streamline the process effectively. This guide will walk you through setting up a multilingual content management system using Decap CMS with GitLab, handling slug fields, adding featured images, and linking translations.</p>
+<h2 id="table-of-contents"><strong>Table of Contents</strong></h2>
+<ol>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#setting-up-decap-cms-with-gitlab">Setting Up Decap CMS with GitLab</a></li>
+<li><a href="#configuring-multilingual-collections">Configuring Multilingual Collections</a></li>
+<li><a href="#switching-to-string-widget-for-slug-fields">Switching to String Widget for Slug Fields</a></li>
+<li><a href="#adding-featured-images-to-posts">Adding Featured Images to Posts</a></li>
+<li><a href="#linking-translations-with-relation-fields">Linking Translations with Relation Fields</a></li>
+<li><a href="#troubleshooting-common-issues">Troubleshooting Common Issues</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ol>
+<hr>
+<h2 id="prerequisites"><strong>Prerequisites</strong></h2>
+<ul>
+<li>A self-hosted GitLab instance.</li>
+<li>A static site generator (e.g., Hugo, Jekyll) configured with multilingual support.</li>
+<li>Basic knowledge of YAML and Git.</li>
+<li>Decap CMS installed in your project.</li>
+</ul>
+<hr>
+<h2 id="setting-up-decap-cms-with-gitlab"><strong>Setting Up Decap CMS with GitLab</strong></h2>
+<h3 id="step-1-configure-oauth-application-in-gitlab"><strong>Step 1: Configure OAuth Application in GitLab</strong></h3>
+<ol>
+<li>
+<p><strong>Navigate to User Settings:</strong></p>
+<ul>
+<li>Go to <code>https://your-gitlab-instance/</code>.</li>
+<li>Click on your avatar and select <strong>&ldquo;Preferences&rdquo;</strong> or <strong>&ldquo;Settings&rdquo;</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Create a New OAuth Application:</strong></p>
+<ul>
+<li>Go to <strong>&ldquo;Applications&rdquo;</strong> in the sidebar.</li>
+<li>Click <strong>&ldquo;New Application&rdquo;</strong>.</li>
+<li><strong>Name:</strong> Enter a name like &ldquo;Decap CMS&rdquo;.</li>
+<li><strong>Redirect URI:</strong> <code>https://your-website.com/admin/</code>.</li>
+<li><strong>Scopes:</strong> Select <code>read_user</code>, <code>api</code>, <code>read_repository</code>, <code>write_repository</code>.</li>
+<li><strong>Confidential:</strong> Uncheck the <strong>&ldquo;Confidential&rdquo;</strong> option.</li>
+<li>Click <strong>&ldquo;Save application&rdquo;</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Note the Application ID:</strong></p>
+<ul>
+<li>After saving, copy the <strong>Application ID</strong>.</li>
+</ul>
+</li>
+</ol>
+<h3 id="step-2-configure-configyml-for-decap-cms"><strong>Step 2: Configure <code>config.yml</code> for Decap CMS</strong></h3>
+<p>Create or update <code>admin/config.yml</code> with the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#5bc4bf">backend</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">name</span>: <span style="color:#f99b15">gitlab</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">repo</span>: <span style="color:#f99b15">yourusername/yourrepository</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">branch</span>: <span style="color:#f99b15">main</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">auth_type</span>: <span style="color:#f99b15">pkce</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">app_id</span>: <span style="color:#f99b15">your_application_id</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">api_root</span>: <span style="color:#f99b15">https://your-gitlab-instance/api/v4</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">base_url</span>: <span style="color:#f99b15">https://your-gitlab-instance</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">auth_endpoint</span>: <span style="color:#f99b15">oauth/authorize</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">scopes</span>: <span style="color:#48b685">&#39;read_user api read_repository write_repository&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#5bc4bf">media_folder</span>: <span style="color:#48b685">&#34;static/uploads&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#5bc4bf">public_folder</span>: <span style="color:#48b685">&#34;/uploads&#34;</span>
+</span></span></code></pre></div><p><strong>Notes:</strong></p>
+<ul>
+<li>Replace <code>yourusername/yourrepository</code> with your GitLab repository path.</li>
+<li>Ensure the <code>api_root</code> and <code>base_url</code> match your GitLab instance URL.</li>
+</ul>
+<h3 id="step-3-add-admin-interface"><strong>Step 3: Add Admin Interface</strong></h3>
+<p>Create an <code>admin</code> folder in your project root and add an <code>index.html</code> file with the following content:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#776e71">&lt;!doctype html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#5bc4bf">html</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#5bc4bf">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#5bc4bf">meta</span> <span style="color:#06b6ef">charset</span><span style="color:#5bc4bf">=</span><span style="color:#48b685">&#34;utf-8&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#5bc4bf">title</span>&gt;Content Manager&lt;/<span style="color:#5bc4bf">title</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#5bc4bf">head</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#5bc4bf">body</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#776e71">&lt;!-- Include the Decap CMS script --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#5bc4bf">script</span> <span style="color:#06b6ef">src</span><span style="color:#5bc4bf">=</span><span style="color:#48b685">&#34;https://unpkg.com/decap-cms@latest/dist/decap-cms.js&#34;</span>&gt;&lt;/<span style="color:#5bc4bf">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#776e71">&lt;!-- Initialize the CMS --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#5bc4bf">script</span>&gt;
+</span></span><span style="display:flex;"><span>      <span style="color:#06b6ef">CMS</span>.<span style="color:#06b6ef">init</span>();
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#5bc4bf">script</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#5bc4bf">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#5bc4bf">html</span>&gt;
+</span></span></code></pre></div><h3 id="step-4-commit-and-push-changes"><strong>Step 4: Commit and Push Changes</strong></h3>
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add admin/index.html admin/config.yml
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#48b685">&#34;Set up Decap CMS with GitLab&#34;</span>
+</span></span><span style="display:flex;"><span>git push
+</span></span></code></pre></div><hr>
+<h2 id="configuring-multilingual-collections"><strong>Configuring Multilingual Collections</strong></h2>
+<p>Assuming your content is organized into language-specific directories:</p>
+<pre tabindex="0"><code>content/
+├── de/
+│   ├── academics/
+│   └── posts/
+└── en/
+    ├── academics/
+    └── posts/
+</code></pre><h3 id="step-1-define-collections-in-configyml"><strong>Step 1: Define Collections in <code>config.yml</code></strong></h3>
+<p>Add separate collections for each language in your <code>config.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#5bc4bf">collections</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#776e71"># German Collections</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#5bc4bf">name</span>: <span style="color:#48b685">&#34;academics_de&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Academics (German)&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">folder</span>: <span style="color:#48b685">&#34;content/de/academics&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">create</span>: <span style="color:#815ba4">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">slug</span>: <span style="color:#48b685">&#34;{{slug}}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">fields</span>:
+</span></span><span style="display:flex;"><span>      - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Titel&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;title&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;string&#34;</span> }
+</span></span><span style="display:flex;"><span>      - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Slug&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;slug&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;string&#34;</span><span style="color:#5bc4bf">, required</span>: <span style="color:#815ba4">true</span> }
+</span></span><span style="display:flex;"><span>      - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Inhalt&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;body&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;markdown&#34;</span> }
+</span></span><span style="display:flex;"><span>  - <span style="color:#5bc4bf">name</span>: <span style="color:#48b685">&#34;posts_de&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Posts (German)&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">folder</span>: <span style="color:#48b685">&#34;content/de/posts&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">create</span>: <span style="color:#815ba4">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">slug</span>: <span style="color:#48b685">&#34;{{slug}}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">fields</span>:
+</span></span><span style="display:flex;"><span>      - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Titel&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;title&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;string&#34;</span> }
+</span></span><span style="display:flex;"><span>      - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Slug&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;slug&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;string&#34;</span><span style="color:#5bc4bf">, required</span>: <span style="color:#815ba4">true</span> }
+</span></span><span style="display:flex;"><span>      - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Datum&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;date&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;datetime&#34;</span> }
+</span></span><span style="display:flex;"><span>      - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Inhalt&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;body&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;markdown&#34;</span> }
+</span></span><span style="display:flex;"><span>  <span style="color:#776e71"># English Collections</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#5bc4bf">name</span>: <span style="color:#48b685">&#34;academics_en&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Academics (English)&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">folder</span>: <span style="color:#48b685">&#34;content/en/academics&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">create</span>: <span style="color:#815ba4">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">slug</span>: <span style="color:#48b685">&#34;{{slug}}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">fields</span>:
+</span></span><span style="display:flex;"><span>      - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Title&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;title&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;string&#34;</span> }
+</span></span><span style="display:flex;"><span>      - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Slug&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;slug&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;string&#34;</span><span style="color:#5bc4bf">, required</span>: <span style="color:#815ba4">true</span> }
+</span></span><span style="display:flex;"><span>      - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Body&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;body&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;markdown&#34;</span> }
+</span></span><span style="display:flex;"><span>  - <span style="color:#5bc4bf">name</span>: <span style="color:#48b685">&#34;posts_en&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Posts (English)&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">folder</span>: <span style="color:#48b685">&#34;content/en/posts&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">create</span>: <span style="color:#815ba4">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">slug</span>: <span style="color:#48b685">&#34;{{slug}}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5bc4bf">fields</span>:
+</span></span><span style="display:flex;"><span>      - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Title&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;title&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;string&#34;</span> }
+</span></span><span style="display:flex;"><span>      - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Slug&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;slug&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;string&#34;</span><span style="color:#5bc4bf">, required</span>: <span style="color:#815ba4">true</span> }
+</span></span><span style="display:flex;"><span>      - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Date&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;date&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;datetime&#34;</span> }
+</span></span><span style="display:flex;"><span>      - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Body&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;body&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;markdown&#34;</span> }
+</span></span></code></pre></div><h3 id="step-2-commit-and-push-changes"><strong>Step 2: Commit and Push Changes</strong></h3>
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add config.yml
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#48b685">&#34;Configure multilingual collections&#34;</span>
+</span></span><span style="display:flex;"><span>git push
+</span></span></code></pre></div><hr>
+<h2 id="switching-to-string-widget-for-slug-fields"><strong>Switching to String Widget for Slug Fields</strong></h2>
+<p>Due to compatibility issues with the <code>slug</code> widget, we&rsquo;ll use the <code>string</code> widget for slug fields.</p>
+<h3 id="step-1-update-slug-fields-in-configyml"><strong>Step 1: Update Slug Fields in <code>config.yml</code></strong></h3>
+<p>Replace the <code>slug</code> widget with the <code>string</code> widget in all collections:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>- { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Slug&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;slug&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;string&#34;</span><span style="color:#5bc4bf">, required</span>: <span style="color:#815ba4">true</span> }
+</span></span></code></pre></div><h3 id="step-2-remove-options-property"><strong>Step 2: Remove <code>options</code> Property</strong></h3>
+<p>Since the <code>string</code> widget doesn&rsquo;t support <code>options</code>, ensure you remove that property.</p>
+<h3 id="step-3-commit-and-push-changes"><strong>Step 3: Commit and Push Changes</strong></h3>
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add config.yml
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#48b685">&#34;Switch slug fields to string widget&#34;</span>
+</span></span><span style="display:flex;"><span>git push
+</span></span></code></pre></div><h3 id="step-4-manually-enter-slugs-in-the-cms"><strong>Step 4: Manually Enter Slugs in the CMS</strong></h3>
+<p>When creating or editing content, manually enter the slug in the provided field.</p>
+<hr>
+<h2 id="adding-featured-images-to-posts"><strong>Adding Featured Images to Posts</strong></h2>
+<p>Enhance your posts by adding featured images.</p>
+<h3 id="step-1-add-featured_image-field-in-configyml"><strong>Step 1: Add <code>featured_image</code> Field in <code>config.yml</code></strong></h3>
+<p>Add the following field to your post collections:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>- { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Featured Image&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;featured_image&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;image&#34;</span><span style="color:#5bc4bf">, required</span>: <span style="color:#815ba4">false</span> }
+</span></span></code></pre></div><h3 id="example-for-posts_en"><strong>Example for <code>posts_en</code>:</strong></h3>
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#5bc4bf">fields</span>:
+</span></span><span style="display:flex;"><span>  - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Title&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;title&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;string&#34;</span> }
+</span></span><span style="display:flex;"><span>  - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Slug&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;slug&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;string&#34;</span><span style="color:#5bc4bf">, required</span>: <span style="color:#815ba4">true</span> }
+</span></span><span style="display:flex;"><span>  - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Date&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;date&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;datetime&#34;</span> }
+</span></span><span style="display:flex;"><span>  - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Featured Image&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;featured_image&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;image&#34;</span><span style="color:#5bc4bf">, required</span>: <span style="color:#815ba4">false</span> }
+</span></span><span style="display:flex;"><span>  - { <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Body&#34;</span><span style="color:#5bc4bf">, name</span>: <span style="color:#48b685">&#34;body&#34;</span><span style="color:#5bc4bf">, widget</span>: <span style="color:#48b685">&#34;markdown&#34;</span> }
+</span></span></code></pre></div><h3 id="step-2-commit-and-push-changes-1"><strong>Step 2: Commit and Push Changes</strong></h3>
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add config.yml
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#48b685">&#34;Add featured_image field to posts&#34;</span>
+</span></span><span style="display:flex;"><span>git push
+</span></span></code></pre></div><h3 id="step-3-upload-images-via-the-cms"><strong>Step 3: Upload Images via the CMS</strong></h3>
+<ul>
+<li><strong>Open the CMS:</strong> Navigate to your admin interface.</li>
+<li><strong>Create/Edit a Post:</strong> Use the image upload field to add a featured image.</li>
+</ul>
+<h3 id="step-4-update-your-templates"><strong>Step 4: Update Your Templates</strong></h3>
+<p>Modify your templates to display the featured image:</p>
+<p><strong>Example in Hugo:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ if .Params.featured_image }}
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#5bc4bf">img</span> <span style="color:#06b6ef">src</span><span style="color:#5bc4bf">=</span><span style="color:#48b685">&#34;{{ .Params.featured_image }}&#34;</span> <span style="color:#06b6ef">alt</span><span style="color:#5bc4bf">=</span><span style="color:#48b685">&#34;{{ .Params.title }}&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span></code></pre></div><hr>
+<h2 id="linking-translations-with-relation-fields"><strong>Linking Translations with Relation Fields</strong></h2>
+<p>Link corresponding posts in different languages using relation fields.</p>
+<h3 id="step-1-add-relation-fields-in-configyml"><strong>Step 1: Add Relation Fields in <code>config.yml</code></strong></h3>
+<p><strong>Example for <code>posts_de</code>:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>- <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;Englische Version&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">name</span>: <span style="color:#48b685">&#34;english_version&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">widget</span>: <span style="color:#48b685">&#34;relation&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">collection</span>: <span style="color:#48b685">&#34;posts_en&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">search_fields</span>: [<span style="color:#48b685">&#34;title&#34;</span>, <span style="color:#48b685">&#34;slug&#34;</span>]
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">value_field</span>: <span style="color:#48b685">&#34;slug&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">display_fields</span>: [<span style="color:#48b685">&#34;title&#34;</span>]
+</span></span></code></pre></div><p><strong>Example for <code>posts_en</code>:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>- <span style="color:#5bc4bf">label</span>: <span style="color:#48b685">&#34;German Version&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">name</span>: <span style="color:#48b685">&#34;german_version&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">widget</span>: <span style="color:#48b685">&#34;relation&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">collection</span>: <span style="color:#48b685">&#34;posts_de&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">search_fields</span>: [<span style="color:#48b685">&#34;title&#34;</span>, <span style="color:#48b685">&#34;slug&#34;</span>]
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">value_field</span>: <span style="color:#48b685">&#34;slug&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#5bc4bf">display_fields</span>: [<span style="color:#48b685">&#34;title&#34;</span>]
+</span></span></code></pre></div><h3 id="step-2-commit-and-push-changes-2"><strong>Step 2: Commit and Push Changes</strong></h3>
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add config.yml
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#48b685">&#34;Add relation fields for translations&#34;</span>
+</span></span><span style="display:flex;"><span>git push
+</span></span></code></pre></div><h3 id="step-3-link-posts-in-the-cms"><strong>Step 3: Link Posts in the CMS</strong></h3>
+<ul>
+<li><strong>Edit a Post:</strong> Use the relation field to select the corresponding translation.</li>
+<li><strong>Save Changes:</strong> The slug of the linked post will be stored in the front matter.</li>
+</ul>
+<h3 id="step-4-update-your-templates-1"><strong>Step 4: Update Your Templates</strong></h3>
+<p>Use the linked slugs to create language switcher links in your templates.</p>
+<p><strong>Example in Hugo:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#e7e9db;background-color:#2f1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ if .Params.english_version }}
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#5bc4bf">a</span> <span style="color:#06b6ef">href</span><span style="color:#5bc4bf">=</span><span style="color:#48b685">&#34;/en/posts/{{ .Params.english_version }}&#34;</span>&gt;Read in English&lt;/<span style="color:#5bc4bf">a</span>&gt;
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span></code></pre></div><hr>
+<h2 id="troubleshooting-common-issues"><strong>Troubleshooting Common Issues</strong></h2>
+<h3 id="issue-1-posts-not-appearing-in-the-cms"><strong>Issue 1: Posts Not Appearing in the CMS</strong></h3>
+<p><strong>Solution:</strong></p>
+<ul>
+<li><strong>Check Front Matter:</strong> Ensure all required fields are present.</li>
+<li><strong>Verify File Extensions:</strong> Files should have the correct extension (e.g., <code>.md</code>).</li>
+<li><strong>Confirm Collection Paths:</strong> The <code>folder</code> path in <code>config.yml</code> should match the content directory.</li>
+<li><strong>Refresh the CMS:</strong> Clear cache or use an incognito window.</li>
+</ul>
+<h3 id="issue-2-relation-fields-not-displaying-options"><strong>Issue 2: Relation Fields Not Displaying Options</strong></h3>
+<p><strong>Solution:</strong></p>
+<ul>
+<li><strong>Ensure Unique Slugs:</strong> Slugs must be unique and present in the front matter.</li>
+<li><strong>Check Field Names:</strong> Field names must be consistent and in lowercase.</li>
+<li><strong>Verify Collection Names:</strong> The <code>collection</code> property should match the collection&rsquo;s <code>name</code>.</li>
+<li><strong>Refresh the CMS:</strong> Clear cache to load the latest data.</li>
+</ul>
+<h3 id="issue-3-errors-with-the-slug-widget"><strong>Issue 3: Errors with the Slug Widget</strong></h3>
+<p><strong>Solution:</strong></p>
+<ul>
+<li><strong>Use String Widget:</strong> Replace the <code>slug</code> widget with the <code>string</code> widget.</li>
+<li><strong>Remove Unnecessary Scripts:</strong> Update <code>admin/index.html</code> to remove slug widget scripts.</li>
+<li><strong>Manually Enter Slugs:</strong> Instruct editors to input slugs manually.</li>
+</ul>
+<hr>
+<h2 id="conclusion"><strong>Conclusion</strong></h2>
+<p>By following this guide, you&rsquo;ve successfully set up a multilingual content management system using Decap CMS with GitLab. You&rsquo;ve configured collections for different languages, handled slug fields using the string widget, added the ability to include featured images in your posts, and linked translations using relation fields. This setup will streamline your content management workflow and enhance the multilingual capabilities of your website.</p>
+<p><strong>Happy content managing!</strong></p>
+
+
+
+      
+        <div class="blog-tags">
+          
+          <a href="https://182bit.org/tags/software/">software</a>&nbsp;
+          
+          <a href="https://182bit.org/tags/cms/">cms</a>&nbsp;
+          
+          <a href="https://182bit.org/tags/decap/">decap</a>&nbsp;
+          
+          <a href="https://182bit.org/tags/hugo/">hugo</a>&nbsp;
+          
+          <a href="https://182bit.org/tags/gitlab/">gitlab</a>&nbsp;
+          
+          <a href="https://182bit.org/tags/pages/">pages</a>&nbsp;
+          
+        </div>
+      
+    </article>
+    
+  </div>
+
+        </div><footer>
+  <div class="container">
+    <p class="credits copyright">
+      <p class="credits theme-by">
+        
+        
+        
+        <a href="https://182bit.org/">182 BIT TECH DOCS</a>,
+        
+        &copy;
+        2024
+        <a href="https://182bit.org/about/">Florian Feigl</a>
+      </p>
+  </div>
+</footer></body>
+</html>

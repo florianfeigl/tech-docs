@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scripting on 182 BIT TECH DOCS</title>
+    <link>https://182bit.org/tags/scripting/</link>
+    <description>Recent content in Scripting on 182 BIT TECH DOCS</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 20 Oct 2024 23:01:29 +0200</lastBuildDate>
+    <atom:link href="https://182bit.org/tags/scripting/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automating Script Managment</title>
+      <link>https://182bit.org/posts/2024-10-20_automating-scripting/</link>
+      <pubDate>Sun, 20 Oct 2024 23:01:29 +0200</pubDate>
+      <guid>https://182bit.org/posts/2024-10-20_automating-scripting/</guid>
+      <description>&lt;h3 id=&#34;automating-script-management-for-local-use&#34;&gt;Automating Script Management for Local Use&lt;/h3&gt;&#xA;&lt;p&gt;Recently, I’ve begun automating a few small processes, such as cloud synchronization and backup creation. These tasks help me streamline my workflows and reduce the manual effort involved in keeping my system up to date. To make the automation scripts conveniently available locally, I’ve written a small Bash script that allows me to easily link any new scripts I create to a directory in my system&amp;rsquo;s &lt;code&gt;$PATH&lt;/code&gt;, making them accessible from anywhere in the terminal.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
